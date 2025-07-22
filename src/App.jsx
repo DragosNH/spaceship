@@ -18,11 +18,26 @@ function App() {
 
   const controls = new OrbitControls(camera, renderer.domElement);
 
+  // Shapes
+  const planeGeo = new THREE.PlaneGeometry(10, 10);
+  const planeMat = new THREE.MeshBasicMaterial(
+    {
+      color: 0xad6242,
+      side: THREE.DoubleSide
+    }
+  );
+  const plane = new THREE.Mesh(planeGeo, planeMat);
+  plane.rotation.x = 4.7
+  plane.position.y = -1
 
-  const geometry = new THREE.BoxGeometry(1, 1, 1);
-  const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-  const cube = new THREE.Mesh(geometry, material);
-  scene.add(cube);
+
+  const windShieldGeo = new THREE.BoxGeometry(1, 0.4, 1);
+  const windShieldMat = new THREE.MeshBasicMaterial({ color: 0x00aa00 });
+  const windShield = new THREE.Mesh(windShieldGeo, windShieldMat);
+
+  //Scenes
+  scene.add(plane);
+  scene.add(windShield);
 
 
 
@@ -36,6 +51,26 @@ function App() {
 
     renderer.setSize(width, height);
   });
+
+
+  document.body.addEventListener('keydown', function (e) {
+    const key = e.key;
+    switch (key) {
+      case "ArrowUp":
+        windShield.position.z -= 0.1;
+        console.log("Up Key pressed")
+        break;
+      case "ArrowDown":
+        windShield.position.z += 0.1;
+        break;
+      case "ArrowLeft":
+        windShield.rotation.y += 0.1;
+        break;
+      case "ArrowRight":
+        windShield.rotation.y -= 0.1;
+        break;
+    }
+  })
 
   function animate() {
 
