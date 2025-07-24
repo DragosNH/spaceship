@@ -30,13 +30,14 @@ function App() {
   plane.rotation.x = 4.7
   plane.position.y = -1
 
-
+// Windshield
   const windShieldGeo = new THREE.CapsuleGeometry( 0.4, 0.3, 32, 32 );
   const windShieldMat = new THREE.MeshBasicMaterial({ color: 0x333333 });
   const windShield = new THREE.Mesh(windShieldGeo, windShieldMat);
   windShield.rotation.x += 4.80;
   windShield.rotation.z += 4.79;
 
+  // Main Body
   const mainBodyGeo = new THREE.CapsuleGeometry( 0.8, 1.5, 1, 10 );
   const mainBodyMat = new THREE.MeshBasicMaterial({
     color: 0xf5f5f
@@ -45,6 +46,7 @@ function App() {
   mainBody.rotation.x += 4.80;
   mainBody.position.y -= 0.6;
 
+  // Wings
   const wingGeo = new THREE.BoxGeometry(1.5, 0.2, 0.9);
   const wingMat = new THREE.MeshBasicMaterial({
     color: 0xf5f5f
