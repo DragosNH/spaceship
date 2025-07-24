@@ -35,12 +35,35 @@ function App() {
   const windShieldMat = new THREE.MeshBasicMaterial({ color: 0x333333 });
   const windShield = new THREE.Mesh(windShieldGeo, windShieldMat);
   windShield.rotation.x += 4.80;
+  windShield.rotation.z += 4.79;
 
-  
+  const mainBodyGeo = new THREE.CapsuleGeometry( 0.8, 1.5, 1, 10 );
+  const mainBodyMat = new THREE.MeshBasicMaterial({
+    color: 0xf5f5f
+  });
+  const mainBody = new THREE.Mesh(mainBodyGeo, mainBodyMat);
+  mainBody.rotation.x += 4.80;
+  mainBody.position.y -= 0.6;
+
+  const wingGeo = new THREE.BoxGeometry(1.5, 0.2, 0.9);
+  const wingMat = new THREE.MeshBasicMaterial({
+    color: 0xf5f5f
+  });
+  const leftWing = new THREE.Mesh(wingGeo, wingMat);
+  leftWing.position.x -= 1
+  leftWing.position.y -= 0.5
+  const rightWing = new THREE.Mesh(wingGeo, wingMat);
+  rightWing.position.x += 1
+  rightWing.position.y -= 0.5
+
+
 
   //Scenes
   // scene.add(plane);
   scene.add(windShield);
+  scene.add(mainBody);
+  scene.add(leftWing);
+  scene.add(rightWing);
 
 
 
