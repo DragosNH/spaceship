@@ -31,9 +31,10 @@ function App() {
   plane.position.y = -1
 
 
-  const windShieldGeo = new THREE.BoxGeometry(1, 0.4, 1);
+  const windShieldGeo = new THREE.CapsuleGeometry( 1, 1, 4, 8 );
   const windShieldMat = new THREE.MeshBasicMaterial({ color: 0x00aa00 });
   const windShield = new THREE.Mesh(windShieldGeo, windShieldMat);
+  windShield.rotation.x += 4.80
 
   //Scenes
   scene.add(plane);
@@ -64,10 +65,10 @@ function App() {
         windShield.position.z += 0.1;
         break;
       case "ArrowLeft":
-        windShield.rotation.y += 0.1;
+        windShield.rotation.y -= 0.1;
         break;
       case "ArrowRight":
-        windShield.rotation.y -= 0.1;
+        windShield.rotation.y += 0.1;
         break;
     }
   })
