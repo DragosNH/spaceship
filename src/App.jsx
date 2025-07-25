@@ -58,6 +58,21 @@ function App() {
   rightWing.position.x += 1
   rightWing.position.y -= 0.5
 
+  // Engines
+  const engineGeo = new THREE.ConeGeometry(0.3 , 0.4, 32);
+  const engineMat = new THREE.MeshBasicMaterial({
+    color: 0xf6f6f
+  })
+  const leftEngine = new THREE.Mesh(engineGeo,engineMat)
+  leftEngine.position.z += 1.2;
+  leftEngine.rotation.x += 4.80;
+  leftEngine.position.y -= 1;
+  leftEngine.position.x -= 0.4;
+  const rightEngine = new THREE.Mesh(engineGeo,engineMat)
+  rightEngine.position.z += 1.2;
+  rightEngine.rotation.x += 4.80;
+  rightEngine.position.y -= 1;
+  rightEngine.position.x += 0.4;
 
 
   //Scenes
@@ -66,6 +81,8 @@ function App() {
   scene.add(mainBody);
   scene.add(leftWing);
   scene.add(rightWing);
+  scene.add(leftEngine);
+  scene.add(rightEngine);
 
 
 
