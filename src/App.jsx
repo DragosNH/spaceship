@@ -75,14 +75,18 @@ function App() {
   rightEngine.position.x += 0.4;
 
 
-  //Scenes
-  // scene.add(plane);
-  scene.add(windShield);
-  scene.add(mainBody);
-  scene.add(leftWing);
-  scene.add(rightWing);
+  //Group
+  const spaceship = new THREE.Group();
+  spaceship.add(windShield);
+  spaceship.add(mainBody);
+  spaceship.add(leftWing);
+  spaceship.add(rightWing);
   scene.add(leftEngine);
-  scene.add(rightEngine);
+  spaceship.add(rightEngine);
+
+  // Add to scene
+  // scene.add(plane);
+  scene.add(spaceship);
 
 
 
@@ -102,7 +106,7 @@ function App() {
     const key = e.key;
     switch (key) {
       case "ArrowUp":
-        windShield.position.z -= 0.1;
+        // windShield.position.z -= 0.1;
         console.log("Up Key pressed")
         break;
       case "ArrowDown":
