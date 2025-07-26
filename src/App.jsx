@@ -14,11 +14,21 @@ function App() {
   renderer.setSize(window.innerWidth, window.innerHeight);
   document.body.appendChild(renderer.domElement);
 
-  camera.position.z = 5;
+  camera.position.z = 7;
 
   const controls = new OrbitControls(camera, renderer.domElement);
 
-  // Shapes
+  // ------ Lights ------
+  // --- Ambient Light ---
+  const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
+  // --- Directional light ---
+  const directionalLight = new THREE.DirectionalLight(0xffffff, 10);
+  directionalLight.position.x += 3.5;
+  
+  scene.add(ambientLight)
+  scene.add(directionalLight);
+
+  // ------ Shapes ------
   const planeGeo = new THREE.PlaneGeometry(10, 10);
   const planeMat = new THREE.MeshBasicMaterial(
     {
@@ -30,16 +40,16 @@ function App() {
   plane.rotation.x = 4.7
   plane.position.y = -1
 
-// Windshield
-  const windShieldGeo = new THREE.CapsuleGeometry( 0.4, 0.3, 32, 32 );
+  // Windshield
+  const windShieldGeo = new THREE.CapsuleGeometry(0.4, 0.3, 32, 32);
   const windShieldMat = new THREE.MeshBasicMaterial({ color: 0x333333 });
   const windShield = new THREE.Mesh(windShieldGeo, windShieldMat);
   windShield.rotation.x += 4.80;
   windShield.rotation.z += 4.79;
 
   // Main Body
-  const mainBodyGeo = new THREE.CapsuleGeometry( 0.8, 1.5, 1, 10 );
-  const mainBodyMat = new THREE.MeshBasicMaterial({
+  const mainBodyGeo = new THREE.CapsuleGeometry(0.8, 1.5, 1, 10);
+  const mainBodyMat = new THREE.MeshPhysicalMaterial({
     color: 0xf5f5f
   });
   const mainBody = new THREE.Mesh(mainBodyGeo, mainBodyMat);
@@ -59,16 +69,16 @@ function App() {
   rightWing.position.y -= 0.5
 
   // Engines
-  const engineGeo = new THREE.ConeGeometry(0.3 , 0.4, 32);
+  const engineGeo = new THREE.ConeGeometry(0.3, 0.4, 32);
   const engineMat = new THREE.MeshBasicMaterial({
     color: 0xf6f6f
   })
-  const leftEngine = new THREE.Mesh(engineGeo,engineMat)
+  const leftEngine = new THREE.Mesh(engineGeo, engineMat)
   leftEngine.position.z += 1.2;
   leftEngine.rotation.x += 4.80;
   leftEngine.position.y -= 1;
   leftEngine.position.x -= 0.4;
-  const rightEngine = new THREE.Mesh(engineGeo,engineMat)
+  const rightEngine = new THREE.Mesh(engineGeo, engineMat)
   rightEngine.position.z += 1.2;
   rightEngine.rotation.x += 4.80;
   rightEngine.position.y -= 1;
