@@ -63,7 +63,14 @@ function App() {
 
   // Windshield
   const windShieldGeo = new THREE.CapsuleGeometry(0.4, 0.3, 32, 32);
-  const windShieldMat = new THREE.MeshBasicMaterial({ color: 0x333333 });
+  const windShieldMat = new THREE.MeshPhysicalMaterial({
+    color: 0x333333,
+    opacity: 0.8,
+    transparent: true,
+    roughness: 0.1,
+    metalness: 0.5,
+    reflectivity: 1,
+  });
   const windShield = new THREE.Mesh(windShieldGeo, windShieldMat);
   windShield.rotation.x += 4.80;
   windShield.rotation.z += 4.79;
