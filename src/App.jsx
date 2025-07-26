@@ -1,6 +1,8 @@
 import './App.css'
 import * as THREE from 'three'
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { EXRLoader } from 'three/addons/loaders/EXRLoader.js';
+import { PMREMGenerator } from 'three';
 
 function App() {
 
@@ -16,15 +18,34 @@ function App() {
 
   camera.position.z = 7;
 
+  // ------ Background ------
+  const loader = new EXRLoader();
+  loader.load('src/textures/nightsky.exr', function (texture) {
+    const pmremGenerator = new THREE.PMREMGenerator(renderer);
+    pmremGenerator.compileEquirectangularShader();
+
+    const envMap = pmremGenerator.fromEquirectangular(texture).texture;
+
+    scene.environment = envMap;
+
+    // Display backgorund image
+    // scene.background = envMap;
+
+    texture.dispose();
+    pmremGenerator.dispose();
+
+    render();
+  });
+
   const controls = new OrbitControls(camera, renderer.domElement);
 
   // ------ Lights ------
   // --- Ambient Light ---
-  const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
+  const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
   // --- Directional light ---
   const directionalLight = new THREE.DirectionalLight(0xffffff, 10);
   directionalLight.position.x += 3.5;
-  
+
   scene.add(ambientLight)
   scene.add(directionalLight);
 
@@ -50,7 +71,9 @@ function App() {
   // Main Body
   const mainBodyGeo = new THREE.CapsuleGeometry(0.8, 1.5, 1, 10);
   const mainBodyMat = new THREE.MeshPhysicalMaterial({
-    color: 0xf5f5f
+    color: 0xf5f5f,
+    roughness: 0.1,
+    metalness: 0.5,
   });
   const mainBody = new THREE.Mesh(mainBodyGeo, mainBodyMat);
   mainBody.rotation.x += 4.80;
