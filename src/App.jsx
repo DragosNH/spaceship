@@ -81,7 +81,7 @@ function App() {
   spaceship.add(mainBody);
   spaceship.add(leftWing);
   spaceship.add(rightWing);
-  scene.add(leftEngine);
+  spaceship.add(leftEngine);
   spaceship.add(rightEngine);
 
   // Add to scene
@@ -106,17 +106,17 @@ function App() {
     const key = e.key;
     switch (key) {
       case "ArrowUp":
-        // windShield.position.z -= 0.1;
+        spaceship.position.z -= 0.1;
         console.log("Up Key pressed")
         break;
       case "ArrowDown":
-        windShield.position.z += 0.1;
+        spaceship.position.z += 0.1;
         break;
       case "ArrowLeft":
-        windShield.rotation.z -= 0.1;
+        spaceship.rotation.z -= 0.1;
         break;
       case "ArrowRight":
-        windShield.rotation.z += 0.1;
+        spaceship.rotation.z += 0.1;
         break;
     }
   })
