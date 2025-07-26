@@ -74,6 +74,7 @@ function App() {
     color: 0xf5f5f,
     roughness: 0.1,
     metalness: 0.5,
+    reflectivity: 1,
   });
   const mainBody = new THREE.Mesh(mainBodyGeo, mainBodyMat);
   mainBody.rotation.x += 4.80;
@@ -81,8 +82,11 @@ function App() {
 
   // Wings
   const wingGeo = new THREE.BoxGeometry(1.5, 0.2, 0.9);
-  const wingMat = new THREE.MeshBasicMaterial({
-    color: 0xf5f5f
+  const wingMat = new THREE.MeshPhysicalMaterial({
+    color: 0xf5f5f,
+    roughness: 0.1,
+    metalness: 0.5,
+    reflectivity: 1,
   });
   const leftWing = new THREE.Mesh(wingGeo, wingMat);
   leftWing.position.x -= 1
@@ -93,9 +97,12 @@ function App() {
 
   // Engines
   const engineGeo = new THREE.ConeGeometry(0.3, 0.4, 32);
-  const engineMat = new THREE.MeshBasicMaterial({
-    color: 0xf6f6f
-  })
+  const engineMat = new THREE.MeshPhysicalMaterial({
+    color: 0xf5f5f,
+    roughness: 0.1,
+    metalness: 0.5,
+    reflectivity: 1,
+  });
   const leftEngine = new THREE.Mesh(engineGeo, engineMat)
   leftEngine.position.z += 1.2;
   leftEngine.rotation.x += 4.80;
