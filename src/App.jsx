@@ -128,10 +128,10 @@ function App() {
       emissive: 0xffff00,
       emissiveIntensity: 50
   });
-  const acceleration = new THREE.Mesh(accelerationGeo,accelerationMat);
-  acceleration.position.z += 1.5;
-  acceleration.position.y -= 1;
-  acceleration.position.x -= 0.4;
+  const accelerationLeft = new THREE.Mesh(accelerationGeo,accelerationMat);
+  accelerationLeft.position.z += 1.5;
+  accelerationLeft.position.y -= 1;
+  accelerationLeft.position.x -= 0.4;
 
   // Light emmision
   const accelerationLight = new THREE.PointLight(0xffff00, 80, 10);
@@ -152,7 +152,7 @@ function App() {
   // Add to scene
   // scene.add(plane);
   scene.add(spaceship);
-  scene.add(acceleration)
+  scene.add(accelerationLeft)
 
 
 
