@@ -132,13 +132,17 @@ function App() {
   accelerationLeft.position.z += 1.5;
   accelerationLeft.position.y -= 1;
   accelerationLeft.position.x -= 0.4;
+  const accelerationRight = new THREE.Mesh(accelerationGeo,accelerationMat);
+  accelerationRight.position.z += 1.5;
+  accelerationRight.position.y -= 1;
+  accelerationRight.position.x += 0.4;
 
   // Light emmision
-  const accelerationLight = new THREE.PointLight(0xffff00, 80, 10);
-  accelerationLight.position.z += 1.6;
-  accelerationLight.position.y -= 1;
-  accelerationLight.position.x -= 0.4;
-  scene.add(accelerationLight);
+  const accelerationLightLeft = new THREE.PointLight(0xffff00, 80, 10);
+  accelerationLightLeft.position.z += 1.6;
+  accelerationLightLeft.position.y -= 1;
+  accelerationLightLeft.position.x -= 0.4;
+  scene.add(accelerationLightLeft);
 
   //Group
   const spaceship = new THREE.Group();
@@ -153,7 +157,8 @@ function App() {
   // scene.add(plane);
   scene.add(spaceship);
   scene.add(accelerationLeft)
-
+  scene.add(accelerationRight)
+  
 
 
   // Responsive design
