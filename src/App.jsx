@@ -121,6 +121,24 @@ function App() {
   rightEngine.position.y -= 1;
   rightEngine.position.x += 0.4;
 
+  // Engines acceleration 
+  const accelerationGeo = new THREE.SphereGeometry(0.2, 32, 16);
+  const accelerationMat = new THREE.MeshStandardMaterial({
+      color: 0xffff52,
+      emissive: 0xffff00,
+      emissiveIntensity: 50
+  });
+  const acceleration = new THREE.Mesh(accelerationGeo,accelerationMat);
+  acceleration.position.z += 1.5;
+  acceleration.position.y -= 1;
+  acceleration.position.x -= 0.4;
+
+  // Light emmision
+  const accelerationLight = new THREE.PointLight(0xffff00, 80, 10);
+  accelerationLight.position.z += 1.6;
+  accelerationLight.position.y -= 1;
+  accelerationLight.position.x -= 0.4;
+  scene.add(accelerationLight);
 
   //Group
   const spaceship = new THREE.Group();
@@ -134,6 +152,7 @@ function App() {
   // Add to scene
   // scene.add(plane);
   scene.add(spaceship);
+  scene.add(acceleration)
 
 
 
