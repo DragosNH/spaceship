@@ -138,16 +138,16 @@ function App() {
   accelerationRight.position.x += 0.4;
 
   // Light emmision
+  // Left
   const accelerationLightLeft = new THREE.PointLight(0xffff00, 80, 10);
   accelerationLightLeft.position.z += 1.6;
   accelerationLightLeft.position.y -= 1;
   accelerationLightLeft.position.x -= 0.4;
-  scene.add(accelerationLightLeft);
+  // Right
   const accelerationLightRight = new THREE.PointLight(0xffff00, 80, 10);
   accelerationLightRight.position.z += 1.6;
   accelerationLightRight.position.y -= 1;
   accelerationLightRight.position.x += 0.4;
-  scene.add(accelerationLightRight);
 
   //Group
   const spaceship = new THREE.Group();
@@ -157,12 +157,15 @@ function App() {
   spaceship.add(rightWing);
   spaceship.add(leftEngine);
   spaceship.add(rightEngine);
+  spaceship.add(accelerationLightLeft);
+  spaceship.add(accelerationLightRight);
+  spaceship.add(accelerationLeft);
+  spaceship.add(accelerationRight);
 
   // Add to scene
   // scene.add(plane);
   scene.add(spaceship);
-  scene.add(accelerationLeft)
-  scene.add(accelerationRight)
+
   
 
 
