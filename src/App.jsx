@@ -143,6 +143,11 @@ function App() {
   accelerationLightLeft.position.y -= 1;
   accelerationLightLeft.position.x -= 0.4;
   scene.add(accelerationLightLeft);
+  const accelerationLightRight = new THREE.PointLight(0xffff00, 80, 10);
+  accelerationLightRight.position.z += 1.6;
+  accelerationLightRight.position.y -= 1;
+  accelerationLightRight.position.x += 0.4;
+  scene.add(accelerationLightRight);
 
   //Group
   const spaceship = new THREE.Group();
