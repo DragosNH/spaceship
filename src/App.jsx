@@ -155,7 +155,10 @@ function App() {
   for (let i = 0; i < 10000; i++) {
     const radius = Math.random() * 3 + 0.5;
     const meteorGeo = new THREE.SphereGeometry(radius, 32, 16);
-    const meteorMat = new THREE.MeshBasicMaterial({ color: 0xa5a5a5 });
+    const meteorMat = new THREE.MeshPhysicalMaterial({ 
+      color: 0xa5a5a5,
+      roughness: 1
+    });
 
     const meteor = new THREE.Mesh(meteorGeo, meteorMat);
 
