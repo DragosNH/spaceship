@@ -16,7 +16,7 @@ function App() {
   renderer.setSize(window.innerWidth, window.innerHeight);
   document.body.appendChild(renderer.domElement);
 
-  camera.position.z = 7;
+  // camera.position.z = 7;
 
   // ------ Background ------
   const loader = new EXRLoader();
@@ -124,15 +124,15 @@ function App() {
   // Engines acceleration 
   const accelerationGeo = new THREE.SphereGeometry(0.2, 32, 16);
   const accelerationMat = new THREE.MeshStandardMaterial({
-      color: 0xffff52,
-      emissive: 0xffff00,
-      emissiveIntensity: 50
+    color: 0xffff52,
+    emissive: 0xffff00,
+    emissiveIntensity: 50
   });
-  const accelerationLeft = new THREE.Mesh(accelerationGeo,accelerationMat);
+  const accelerationLeft = new THREE.Mesh(accelerationGeo, accelerationMat);
   accelerationLeft.position.z += 1.5;
   accelerationLeft.position.y -= 1;
   accelerationLeft.position.x -= 0.4;
-  const accelerationRight = new THREE.Mesh(accelerationGeo,accelerationMat);
+  const accelerationRight = new THREE.Mesh(accelerationGeo, accelerationMat);
   accelerationRight.position.z += 1.5;
   accelerationRight.position.y -= 1;
   accelerationRight.position.x += 0.4;
@@ -166,7 +166,6 @@ function App() {
   // scene.add(plane);
   scene.add(spaceship);
 
-  
 
 
   // Responsive design
@@ -202,7 +201,18 @@ function App() {
 
   function animate() {
 
-    controls.update();
+    spaceship.position.z -= 0.1;
+
+    const relativeCameraOffset = new THREE.Vector3(0, 2, 6); // (x, y, z)
+
+    // Apply rotation of the spaceship to the offset
+    const cameraOffset = relativeCameraOffset.clone().applyMatrix4(spaceship.matrixWorld);
+
+    // Update camera position
+    camera.position.lerp(cameraOffset, 0.1); // smooth follow
+
+    // Make the camera look at the spaceship
+    camera.lookAt(spaceship.position);
 
     renderer.render(scene, camera);
   }
