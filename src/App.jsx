@@ -205,17 +205,16 @@ function App() {
     const key = e.key;
     switch (key) {
       case "ArrowUp":
-        spaceship.position.z -= 0.1;
-        console.log("Up Key pressed")
+        spaceship.position.y += 0.1;
         break;
       case "ArrowDown":
-        spaceship.position.z += 0.1;
+        spaceship.position.y -= 0.1;
         break;
       case "ArrowLeft":
-        spaceship.rotation.z -= 0.1;
+        spaceship.position.x -= 0.1;
         break;
       case "ArrowRight":
-        spaceship.rotation.z += 0.1;
+        spaceship.position.x += 0.1;
         break;
     }
   })
@@ -224,7 +223,7 @@ function App() {
 
     spaceship.position.z -= 0.1;
 
-    const relativeCameraOffset = new THREE.Vector3(0, 2, 6); // (x, y, z)
+    const relativeCameraOffset = new THREE.Vector3(0, 2, 6);
 
     const cameraOffset = relativeCameraOffset.clone().applyMatrix4(spaceship.matrixWorld);
 
