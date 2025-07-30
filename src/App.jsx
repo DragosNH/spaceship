@@ -149,6 +149,26 @@ function App() {
   accelerationLightRight.position.y -= 1;
   accelerationLightRight.position.x += 0.4;
 
+  // meteorites
+  let meteorites = []
+
+  for (let i = 0; i < 10000; i++) { 
+    const radius = Math.random() * 3 + 0.5; 
+    const meteorGeo = new THREE.SphereGeometry(radius, 32, 16);
+    const meteorMat = new THREE.MeshBasicMaterial({ color: 0xa5a5a5 });
+
+    const meteor = new THREE.Mesh(meteorGeo, meteorMat);
+
+    meteor.position.set(
+      (Math.random() - 0.5) * 1000,  
+      (Math.random() - 0.5) * 1000,  
+      Math.random() * -2000 - 10     
+    );
+
+    scene.add(meteor);
+    meteorites.push(meteor); 
+  }
+
   //Group
   const spaceship = new THREE.Group();
   spaceship.add(windShield);
@@ -163,8 +183,9 @@ function App() {
   spaceship.add(accelerationRight);
 
   // Add to scene
-  // scene.add(plane);
+  scene.add(plane);
   scene.add(spaceship);
+
 
 
 
@@ -205,13 +226,10 @@ function App() {
 
     const relativeCameraOffset = new THREE.Vector3(0, 2, 6); // (x, y, z)
 
-    // Apply rotation of the spaceship to the offset
     const cameraOffset = relativeCameraOffset.clone().applyMatrix4(spaceship.matrixWorld);
 
-    // Update camera position
-    camera.position.lerp(cameraOffset, 0.1); // smooth follow
+    camera.position.lerp(cameraOffset, 0.1);
 
-    // Make the camera look at the spaceship
     camera.lookAt(spaceship.position);
 
     renderer.render(scene, camera);
